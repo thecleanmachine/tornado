@@ -430,6 +430,11 @@ class HTTPHeaders(dict):
         headers = cls()
         for line in headers_string.splitlines():
             if line:
-                name, value = line.split(": ", 1)
+		name = ''
+		value = ''
+                if(line.find(": ") != -1):
+                        name, value = line.split(": ", 1)
+                elif(line.find(":") != -1):
+                        name, value = line.split(":", 1)
                 headers[name] = value
         return headers
